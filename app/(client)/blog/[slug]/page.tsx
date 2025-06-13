@@ -23,6 +23,7 @@ const SingleBlogPage = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const { slug } = await params;
+  //@ts-ignore
   const blog: SINGLE_BLOG_QUERYResult = await getSingleBlog(slug);
   if (!blog) return notFound();
 
@@ -207,6 +208,7 @@ const BlogLeft = async ({ slug }: { slug: string }) => {
               key={index}
               className="text-lightColor flex items-center justify-between text-sm font-medium"
             >
+
               <p>{blogcategories[0]?.title}</p>
               <p className="text-darkColor font-semibold">{`(1)`}</p>
             </div>
@@ -216,7 +218,7 @@ const BlogLeft = async ({ slug }: { slug: string }) => {
       <div className="border border-lightColor p-5 rounded-md mt-10">
         <Title className="text-base">Latest Blogs</Title>
         <div className="space-y-4 mt-4">
-          {blogs?.map((blog: Blog, index: number) => (
+          {blogs?.map((blog, index) => (
             <Link
               href={`/blog/${blog?.slug?.current}`}
               key={index}
