@@ -1,5 +1,5 @@
 import React from "react";
-import Title from "../Title";
+import Title from "../../Title";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Label } from "../ui/label";
 
