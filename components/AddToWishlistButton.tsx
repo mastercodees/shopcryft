@@ -1,21 +1,17 @@
 import { cn } from '@/lib/utils';
 import { Product } from '@/sanity.types';
-import { Heart, HeartIcon } from 'lucide-react';
+import { HeartIcon } from 'lucide-react';
 import React from 'react'
 
 const AddToWishlistButton = (
     {
-        product,
+
         className,
     }: {
         product: Product;
         className?: string;
     }
 ) => {
-
-
-
-
 
     return (
         <div className={cn("absolute top-2 right-2 z-10", className)}

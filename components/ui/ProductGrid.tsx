@@ -15,29 +15,32 @@ const ProductGrid = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(false);
     const [selectedTab, setSelectedTab] = useState(productType[0]?.title || "");
-    const query = `*[_type == "product" && variant == $variant] | order(name asc){
-  ...,"categories": categories[]->title
-}`;
-    const params = { variant: selectedTab.toLowerCase() };
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
+            const query = `*[_type == "product" && variant == $variant] | order(name asc){
+        ...,"categories": categories[]->title
+      }`;
+            const params = { variant: selectedTab.toLowerCase() };
+
             try {
                 const response = await client.fetch(query, params);
-                setProducts(await response);
+                setProducts(response);
             } catch (error) {
                 console.log("Product fetching Error", error);
             } finally {
                 setLoading(false);
             }
         };
+
         fetchData();
     }, [selectedTab]);
 
     return (
         <Container className="flex flex-col lg:px-0 my-10">
             <HomeTabBar selectedTab={selectedTab} onTabSelect={setSelectedTab} />
+
             {loading ? (
                 <div className="flex flex-col items-center justify-center py-10 min-h-80 space-y-4 text-center bg-gray-100 rounded-lg w-full mt-10">
                     <motion.div className="flex items-center space-x-2 text-blue-600">

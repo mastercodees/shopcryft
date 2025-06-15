@@ -1,6 +1,6 @@
 "use client";
 import { productType } from "@/constants/data";
-import { log } from "console";
+
 import Link from "next/link";
 interface Props {
     selectedTab: string;

@@ -23,7 +23,7 @@ const SingleBlogPage = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const { slug } = await params;
-  //@ts-ignore
+  // @ts-expect-error params is a Promise in route config but destructured here for async page use
   const blog: SINGLE_BLOG_QUERYResult = await getSingleBlog(slug);
   if (!blog) return notFound();
 
